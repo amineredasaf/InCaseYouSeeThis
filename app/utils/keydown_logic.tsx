@@ -1,3 +1,5 @@
+
+// this code is not imporeted anywhere 
 import { useEffect } from "react";
 
 export function Shortcuts() {
