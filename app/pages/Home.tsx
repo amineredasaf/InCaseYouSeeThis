@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import MessageForm from "../components/Form";
+import Search from "../components/Search";
 
 export default function Home() {
   const SearchInput = useRef<HTMLInputElement>(null);
@@ -43,15 +44,7 @@ export default function Home() {
   return (
     <div className=" grid justify-center items-center h-full w-full border border-red-400">
       <div className="grid ">
-        <div className="flex m-4">
-          <input
-            ref={SearchInput}
-            type="text"
-            maxLength={19}
-            placeholder="Search Your Name"
-            className="bg-transparent outline-none border border-gray-600 focus:border-pink-500 hover:border-pink-500 text-gray-300 focus:text-pink-300 hover:text-pink-400 rounded-md text-center p-2 uppercase"
-          />
-        </div>
+        <Search ref={SearchInput}/>
         {/* Message Form Here */}
         <MessageForm ref={NewMessage}/>
 

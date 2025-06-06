@@ -11,13 +11,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@heroui/react";
 import React, { useEffect, useState } from "react";
-// import { supabase } from "../utils/supabase";
+import { supabase } from "../utils/supabase";
+import { randomUUID, UUID } from "crypto";
+import { generateSlug } from "../utils/gen_slug";
 
-// async function CreateMessage() {
-//   const { error } = await supabase
-//     .from("Messages")
-//     .insert({ name: "Mordor", message: "hi", date: "date" });
-// }
+interface MessageProp {
+  name: string,
+  message: string,
+  slug: String
+}
+
+async function CreateMessage(Data: MessageProp) {
+  try {
+    const { error } = await supabase
+    .from("messages")
+    .insert({ name: Data.name , message: Data.message, slug: Data.slug });
+  } catch (error) {
+    console.log("error", error);
+  }
+}
 
 const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
   const [Name, SetName] = useState<string>("");
@@ -32,13 +44,16 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
     }
   }, [Name, Message]);
 
-  const handleSubmit = () => {
-    const Data = {
-      Name: Name,
-      Message: Message,
+  const handleSubmit = async () => {
+    const Data : MessageProp = {
+      name: Name,
+      message: Message,
+      slug: generateSlug()
     };
     console.log("We Are Sending this Data");
     console.log(Data);
+
+    await CreateMessage(Data);
   };
 
   return (
