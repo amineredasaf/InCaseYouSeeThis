@@ -6,7 +6,7 @@ html,body {
   width: 100%;
   height: 100%;
   /* background: var(--background); */
-  /* color: var(--foreground); */
+  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -29,21 +29,14 @@ html,body {
 }
 
 .overlay {
+  width: 100%;
+  height: 100%;
   position: fixed;
   inset: 0;
   z-index: -9;
   pointer-events: none;
   background: rgba(0, 0, 0, 0.863); /* Adjust this */
 }
-/* .animation {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  opacity: 100%;
-  background-image: repeating-radial-gradient(ellipse closest-side , white , black  0.00085px);
-  background-position: center;
-  animation: back 10000s linear infinite;
-} */
 
 @keyframes back {
   from {
@@ -53,7 +46,6 @@ html,body {
     background-size: 200% 200%;
   }
 }
-
 
 
 @layer base {
@@ -113,12 +105,36 @@ html,body {
 }
 
 
-
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+
+/* ------------------------------------------------------------------------------------ */
+
+.am-x {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.76);
+  background-image: repeating-radial-gradient(
+    ellipse,
+    rgba(255, 255, 255, 0.068),
+    rgba(0, 0, 0, 0.795) 0.00085px
+  );
+  /* background-position: center; */
+  /* animation: loop 1000000s linear infinite; */
+}
+
+@keyframes loop {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 2000px 2000px;
   }
 }

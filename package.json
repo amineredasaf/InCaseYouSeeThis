@@ -16,6 +16,8 @@
     "@heroui/system": "^2.4.16",
     "@heroui/theme": "^2.4.16",
     "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@supabase/supabase-js": "^2.50.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.16.0",
