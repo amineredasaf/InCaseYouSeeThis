@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     // console.log(isOpen);
-    function handleKeyDown(event: any) {
+    function handleKeyDown(event: KeyboardEvent) {
       // console.log(event);
       if (event.ctrlKey && event.keyCode == 75) {
         event.preventDefault();

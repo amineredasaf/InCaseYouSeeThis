@@ -1,46 +1,43 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { supabase } from "../utils/supabase";
 import { useSearchParams } from "next/navigation";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 import {
   Card,
   // CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
 import { formatRelativeTime } from "../utils/format_time";
 import { useResponsiveLimit } from "../utils/resposinve_limits";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
-interface resultsProps {
+type Message = {
+  id: string | number;
   name: string;
-  messages: string;
+  message: string;
   created_at: string;
-}
+  author?: string;
+  // ...add other fields as needed
+};
 
 async function SearchAPI(
   name: string,
   page: number,
   limit: number
-): Promise<{ data: any[]; count: number }> {
+): Promise<{ data: Message[]; count: number }> {
   // const limit = 8;
   const offset = (page - 1) * limit;
-  const { data, error, count } = await supabase
+  const { data, count } = await supabase
     .from("messages")
     .select("*", { count: "exact" })
     .eq("name", name)
@@ -49,9 +46,9 @@ async function SearchAPI(
   return { data: data || [], count: count || 0 };
 }
 
-export default function resutls() {
+function ResultsContent() {
   const searchParams = useSearchParams();
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<Message[]>([]);
   const [page, setPage] = useState(1);
   const limit = useResponsiveLimit();
 
@@ -98,14 +95,16 @@ export default function resutls() {
                         {formatRelativeTime(msg.created_at)}
                       </p>
                         <div className="p-1 self-start top-0 relative" style={{ top: "-35px" }}>
-                        <img
-                          src={`/cake.png`}
-                          alt={msg.author}
+                        <Image
+                          src="/cake.png"
+                          alt={msg.author || "cake"}
+                          width={60}
+                          height={80}
                           className="h-15 w-10 md:h-20 md:w-15 object-contain"
                           style={{ 
-                          borderRadius: 0, 
-                          transform: "rotate(10deg)",
-                          marginTop: "-15px" // You can adjust this value to control the height
+                            borderRadius: 0, 
+                            transform: "rotate(10deg)",
+                            marginTop: "-15px"
                           }}
                         />
                         </div>
@@ -164,5 +163,13 @@ export default function resutls() {
           </Pagination>
         </div>
       </div>
+  );
+}
+
+export default function Results() {
+  return (
+    <Suspense>
+      <ResultsContent />
+    </Suspense>
   );
 }

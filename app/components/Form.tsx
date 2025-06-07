@@ -12,18 +12,17 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
-import { randomUUID, UUID } from "crypto";
 import { generateSlug } from "../utils/gen_slug";
 
 interface MessageProp {
   name: string;
   message: string;
-  slug: String;
+  slug: string;
 }
 
 async function CreateMessage(Data: MessageProp) {
   try {
-    const { error } = await supabase
+    await supabase
       .from("messages")
       .insert({ name: Data.name, message: Data.message, slug: Data.slug });
   } catch (error) {
@@ -31,7 +30,7 @@ async function CreateMessage(Data: MessageProp) {
   }
 }
 
-const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
+const MessageForm = React.forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<"button">>((props, ref) => {
   const [Name, SetName] = useState<string>("");
   const [Message, setMessage] = useState<string>("");
   const [ActiveButton, SetActiveButton] = useState(false);
@@ -78,7 +77,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
             </DialogTitle>
 
             <DialogDescription className="text-gray-300 mb-3 text-sm">
-              Think about something you've always wanted to tell someone.
+              Think about something you ve always wanted to tell someone.
             </DialogDescription>
 
             <div className="space-y-5">
@@ -86,7 +85,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
                 <Label className="text-sm text-gray-200">to? @myex</Label>
                 <Input
                   // value={}
-                  onChange={(e: any) => SetName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => SetName(e.target.value)}
                   maxLength={22}
                   placeholder="Jack The ex"
                   className="mt-1  uppercase text-white placeholder:text-gray-400  bg-[#2c2c2c] border-none focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -97,7 +96,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
                 <Label className="text-sm text-gray-200">Message</Label>
                 <textarea
                   maxLength={200}
-                  onChange={(e: any) => setMessage(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
                   placeholder="I don’t miss you, I have a cat now"
                   className="w-full h-32 p-3 rounded-md resize-none text-white  placeholder:text-gray-400  bg-[#2c2c2c] border-none focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
@@ -130,5 +129,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
     </div>
   );
 });
+
+MessageForm.displayName = "MessageForm";
 
 export default MessageForm;
