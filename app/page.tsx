@@ -4,11 +4,9 @@ import "./globals.css";
 
 export default function App() {
   return (
-    <div className="h-full w-full overflow-hidde border border-blue-300">
-      <main className=" h-full w-full overflow-hidden ">
-        <div className="pointer-events-none animation overflow-hidde " />
+    <div className="h-full w-full overflow-hidde">
+      <main className="h-screen w-screen overflow-hidden ">
         <Home/>
-        <div className="overlay"></div>
       </main>
     </div>
   );

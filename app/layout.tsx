@@ -27,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-          {children}
+        {children}
+        <div className="pointer-events-none animation overflow-hidde " />
+        <div className="overlay"></div>
       </body>
     </html>
   );

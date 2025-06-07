@@ -16,16 +16,16 @@ import { randomUUID, UUID } from "crypto";
 import { generateSlug } from "../utils/gen_slug";
 
 interface MessageProp {
-  name: string,
-  message: string,
-  slug: String
+  name: string;
+  message: string;
+  slug: String;
 }
 
 async function CreateMessage(Data: MessageProp) {
   try {
     const { error } = await supabase
-    .from("messages")
-    .insert({ name: Data.name , message: Data.message, slug: Data.slug });
+      .from("messages")
+      .insert({ name: Data.name, message: Data.message, slug: Data.slug });
   } catch (error) {
     console.log("error", error);
   }
@@ -45,10 +45,10 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
   }, [Name, Message]);
 
   const handleSubmit = async () => {
-    const Data : MessageProp = {
-      name: Name,
+    const Data: MessageProp = {
+      name: Name.toLowerCase().trim(),
       message: Message,
-      slug: generateSlug()
+      slug: generateSlug(),
     };
     console.log("We Are Sending this Data");
     console.log(Data);
@@ -60,7 +60,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
     <div className="h-full w-full justify-center grid">
       <Dialog>
         <div className="component-noise-bg" />
-        <form >
+        <form>
           <DialogTrigger asChild>
             <Button
               className="text-white text-sm rounded-md hover:text-pink-300 transition-colors duration-200"
@@ -73,7 +73,7 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
             <DialogHeader>
               <p className="text-xs -mb-3">whispr.com</p>
             </DialogHeader>
-            <DialogTitle className="text-lg font-semibold mb-0 text-lg">
+            <DialogTitle className="font-semibold mb-0 text-lg">
               Write Your Message
             </DialogTitle>
 
@@ -105,23 +105,23 @@ const MessageForm = React.forwardRef<HTMLButtonElement, {}>((props, ref) => {
             </div>
 
             {/* <div className="mt-6 flex justify-end"> */}
-              {ActiveButton ? (
-                <Button
-                  type="submit"
-                  className="bg-pink-400 hover:bg-pink-600 text-white px-4 py-2 rounded-md"
-                  onPress={handleSubmit}
-                >
-                  Submit
-                </Button>
-              ) : (
-                <Button
-                  disabled
-                  type="submit"
-                  className="bg-gray-400 text-white px-4 py-2 rounded-md"
-                >
-                  Submit
-                </Button>
-              )}
+            {ActiveButton ? (
+              <Button
+                type="submit"
+                className="bg-pink-400 hover:bg-pink-600 text-white px-4 py-2 rounded-md"
+                onPress={handleSubmit}
+              >
+                Submit
+              </Button>
+            ) : (
+              <Button
+                disabled
+                type="submit"
+                className="bg-gray-400 text-white px-4 py-2 rounded-md"
+              >
+                Submit
+              </Button>
+            )}
             {/* </div> */}
             <DialogFooter>{/* Put social media here */}</DialogFooter>
           </DialogContent>

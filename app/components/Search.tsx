@@ -1,20 +1,16 @@
+'use client'
 import React, { useEffect, useState } from "react";
-import { supabase } from "../utils/supabase";
-
-async function SearchAPI(name: string) {
-  console.log(name);
-  const { data, error } = await supabase
-    .from("messages")
-    .select()
-    .eq('name', name);
-  console.log(data);
-}
+import { useRouter } from 'next/navigation';
 
 const Search = React.forwardRef<HTMLInputElement, {}>((props, ref) => {
+  const router = useRouter()
   const [name, setName] = useState<string>("");
   const handleSubmit = async () => {
     try {
-      await SearchAPI(name);
+      //   await SearchAPI(name);
+      router.push(
+        "/results?name="+name.toLowerCase().trim(),
+      );
     } catch (error) {
       console.log(error);
     }

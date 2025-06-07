@@ -1,18 +1,6 @@
 "use client";
 // import { Popover, PopoverContent, PopoverTrigger, Input, Button } from "@heroui/react";
-import { Button, useDisclosure } from "@heroui/react";
 import { useRef, useEffect } from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import MessageForm from "../components/Form";
 import Search from "../components/Search";
 
@@ -42,14 +30,14 @@ export default function Home() {
   });
 
   return (
-    <div className=" grid justify-center items-center h-full w-full border border-red-400">
+    <div className="h-full w-full grid justify-center items-center border">
       <div className="grid ">
-        <Search ref={SearchInput}/>
+        <Search ref={SearchInput} />
         {/* Message Form Here */}
-        <MessageForm ref={NewMessage}/>
+        <MessageForm ref={NewMessage} />
 
         {/* Shortcuts Here */}
-        <div className=" text-gray-400 text-start absolute w-[300px] bottom-10 left-10 ">
+        <div className=" text-gray-400 text-start absolute bottom-10 left-10 ">
           <h3 className="text-gray-300">shortcuts</h3>
           <p>ctrl+k for search</p>
           <p>ctrl+i for new message</p>

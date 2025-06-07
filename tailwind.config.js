@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        playwrite: ['"Playwrite HR Guides"', "cursive"],
+      },
       keyframes: {
         "subtle-noise": {
           "0%": { backgroundPosition: "0 0" },
