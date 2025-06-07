@@ -13,6 +13,7 @@ import { Button } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
 import { generateSlug } from "../utils/gen_slug";
+import { Toaster, toast } from "sonner";
 
 interface MessageProp {
   name: string;
@@ -25,12 +26,16 @@ async function CreateMessage(Data: MessageProp) {
     await supabase
       .from("messages")
       .insert({ name: Data.name, message: Data.message, slug: Data.slug });
+    // toast.success('Event has been created')
   } catch (error) {
     console.log("error", error);
   }
 }
 
-const MessageForm = React.forwardRef<HTMLButtonElement, React.ComponentPropsWithoutRef<"button">>((props, ref) => {
+const MessageForm = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<"button">
+>((props, ref) => {
   const [Name, SetName] = useState<string>("");
   const [Message, setMessage] = useState<string>("");
   const [ActiveButton, SetActiveButton] = useState(false);
@@ -52,12 +57,16 @@ const MessageForm = React.forwardRef<HTMLButtonElement, React.ComponentPropsWith
     console.log("We Are Sending this Data");
     console.log(Data);
 
-    await CreateMessage(Data);
+    try {
+      await CreateMessage(Data);
+      toast.success("Message has been created", { position: "top-center" });
+    } catch {}
   };
 
   return (
     <div className="h-full w-full justify-center grid">
       <Dialog>
+        <Toaster richColors />
         <div className="component-noise-bg" />
         <form>
           <DialogTrigger asChild>
@@ -85,7 +94,9 @@ const MessageForm = React.forwardRef<HTMLButtonElement, React.ComponentPropsWith
                 <Label className="text-sm text-gray-200">to? @myex</Label>
                 <Input
                   // value={}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => SetName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    SetName(e.target.value)
+                  }
                   maxLength={22}
                   placeholder="Jack The ex"
                   className="mt-1  uppercase text-white placeholder:text-gray-400  bg-[#2c2c2c] border-none focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -96,7 +107,9 @@ const MessageForm = React.forwardRef<HTMLButtonElement, React.ComponentPropsWith
                 <Label className="text-sm text-gray-200">Message</Label>
                 <textarea
                   maxLength={200}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setMessage(e.target.value)
+                  }
                   placeholder="I don’t miss you, I have a cat now"
                   className="w-full h-32 p-3 rounded-md resize-none text-white  placeholder:text-gray-400  bg-[#2c2c2c] border-none focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
