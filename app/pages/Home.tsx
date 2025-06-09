@@ -3,8 +3,8 @@
 import { useRef, useEffect } from "react";
 import MessageForm from "../components/Form";
 import Search from "../components/Search";
-import BackgroundCanvas from "../components/background_model";
-import TitleCanvas from "../components/TitleCanvas";
+//import BackgroundCanvas from "../components/background_model";
+//import TitleCanvas from "../components/TitleCanvas";
 import FlyingEmojisTitle from "../components/FlyingEmojisTitle";
 import { useResponsiveLimit } from "../utils/resposinve_limits"
 

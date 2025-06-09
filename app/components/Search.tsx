@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { Icon, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface props {
   limit: number
