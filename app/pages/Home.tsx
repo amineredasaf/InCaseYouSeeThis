@@ -3,10 +3,15 @@
 import { useRef, useEffect } from "react";
 import MessageForm from "../components/Form";
 import Search from "../components/Search";
+import BackgroundCanvas from "../components/background_model";
+import TitleCanvas from "../components/TitleCanvas";
+import FlyingEmojisTitle from "../components/FlyingEmojisTitle";
+import { useResponsiveLimit } from "../utils/resposinve_limits"
 
 export default function Home() {
   const SearchInput = useRef<HTMLInputElement>(null);
   const NewMessage = useRef<HTMLButtonElement>(null);
+  const limit = useResponsiveLimit() || 8
 
   useEffect(() => {
     // console.log(isOpen);
@@ -30,9 +35,12 @@ export default function Home() {
   });
 
   return (
-    <div className="h-full w-full grid justify-center items-center border">
+    <div className="h-full w-full grid justify-center items-center">
       <div className="grid ">
-        <Search ref={SearchInput} />
+      {/* <h1 className="text-white text-2xl justify-center text-center top-30">InCaseYouSeeThis🧧</h1> */}
+        {/* <TitleCanvas/> */}
+        <FlyingEmojisTitle/>
+        <Search ref={SearchInput} limit={limit} />
         {/* Message Form Here */}
         <MessageForm ref={NewMessage} />
 
@@ -43,6 +51,7 @@ export default function Home() {
           <p>ctrl+i for new message</p>
         </div>
       </div>
+      {/* <BackgroundCanvas /> */}
     </div>
   );
 }

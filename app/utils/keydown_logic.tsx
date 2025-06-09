@@ -1,4 +1,4 @@
-// this code is not imporeted anywhere 
+// this code is not imporeted anywhere fuck
 import { useEffect } from "react";
 
 export function Shortcuts() {

@@ -19,7 +19,7 @@ body {
   height: 100%;
   z-index: -10;
   pointer-events: none;
-  opacity: 0.4; /* Low opacity */
+  opacity: 0.4;
   background-image: repeating-radial-gradient(ellipse, white, black 0.00085px);
   background-position: center;
   animation: back 10000s linear infinite;
@@ -32,7 +32,7 @@ body {
   inset: 0;
   z-index: -9;
   pointer-events: none;
-  background: rgba(0, 0, 0, 0.863); /* Adjust this */
+  background: rgba(0, 0, 0, 0.863);
 }
 
 @keyframes back {

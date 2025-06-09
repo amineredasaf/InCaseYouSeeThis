@@ -79,7 +79,7 @@ const MessageForm = React.forwardRef<
           </DialogTrigger>
           <DialogContent className="backdrop-blur-md bg-[#24496b]/80 border border-black text-white rounded-xl p-6 shadow-xl am-x">
             <DialogHeader>
-              <p className="text-xs -mb-3">whispr.com</p>
+              <p className="text-xs -mb-3">InCaseYouSeeThis.com</p>
             </DialogHeader>
             <DialogTitle className="font-semibold mb-0 text-lg">
               Write Your Message
