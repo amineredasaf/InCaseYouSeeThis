@@ -22,13 +22,11 @@ type Message = {
 
 const searchAPI = async (name: string, page: number, limit: number): Promise<{ data: Message[]; count: number }> => {
   const offset = (page - 1) * limit
-  console.log("Search Fun Data: ", limit)
   const { data, count } = await supabase
     .from("messages")
     .select("*", { count: "exact" })
     .eq("name", name)
     .range(offset, offset + limit - 1)
-  console.log(data);
   return { data: data || [], count: count || 0 }
 }
 

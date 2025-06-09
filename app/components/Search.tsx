@@ -18,7 +18,7 @@ const Search = React.forwardRef<HTMLInputElement, props>((props, ref,) => {
 
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (

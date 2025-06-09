@@ -12,7 +12,7 @@ export function useResponsiveLimit() {
   const getLimit = useCallback((width: number): number => {
     currentWidth.current = width
 
-    console.log(`Calculating limit for width: ${width}px`)
+    // console.log(`Calculating limit for width: ${width}px`)
 
     if (width >= 1024) {
       return 8
