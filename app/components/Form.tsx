@@ -23,11 +23,12 @@ interface MessageProp {
 
 async function CreateMessage(Data: MessageProp) {
   try {
-    await supabase
+    const {error} = await supabase
       .from("messages")
       .insert({ name: Data.name, message: Data.message, slug: Data.slug });
     // toast.success('Event has been created')
   } catch (error) {
+    toast.error('Event has not been created');
     console.log("error", error);
   }
 }
@@ -59,8 +60,11 @@ const MessageForm = React.forwardRef<
 
     try {
       await CreateMessage(Data);
-      toast.success("Message has been created", { position: "top-center" });
-    } catch {}
+      if (Data)
+        toast.success("Message has been created", { position: "top-center" });
+    } catch {
+
+    }
   };
 
   return (
