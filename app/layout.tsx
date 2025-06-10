@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./components/background_model";
-// import BackgroundCanvas from "./components/background_model";
 import { Analytics } from "@vercel/analytics/next"
+import NoiseOverlay from "./components/NoiseOverlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
+        <NoiseOverlay />
         {children}
         <Analytics />
-        <div className="pointer-events-none animation overflow-hidde " />
-        {/* <BackgroundCanvas /> */}
+        {/* <div className="pointer-events-none grainy-noise overflow-hidde " /> */}
         <div className="overlay"></div>
       </body>
     </html>

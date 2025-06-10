@@ -13,15 +13,15 @@ function Model() {
 export default function BackgroundCanvas() {
   return (
     <Canvas
-      className="bg-transparent "
+      className="bg-transparent blur-sm  "
       camera={{ position: [0, 0, 5], fov: 20 }}
     >
-      <ambientLight intensity={4} />
+      <ambientLight intensity={2} />
       <directionalLight position={[0, 0, 5]} />
       <Suspense fallback={null}>
         <Model />
       </Suspense>
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1} />
+      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={2} />
     </Canvas>
   );
 }

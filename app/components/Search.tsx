@@ -47,7 +47,7 @@ const Search = React.forwardRef<HTMLInputElement, props>((props, ref,) => {
         type="text"
         maxLength={19}
         placeholder="Search Your Name"
-        className={`bg-transparent outline-none border border-gray-600 focus:border-pink-500 hover:border-pink-500 text-gray-300 focus:text-pink-300 hover:text-pink-400 rounded-md text-center p-2 uppercase `}
+        className={`bg-transparent  outline-none border border-gray-600 focus:border-pink-500 hover:border-pink-500 text-gray-300 focus:text-pink-300 hover:text-pink-400 rounded-md text-center p-2 uppercase `}
       />
     </div>
   );
