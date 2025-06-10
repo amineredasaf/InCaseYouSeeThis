@@ -75,7 +75,7 @@ const MessageForm = React.forwardRef<
     <div className="h-full w-full justify-center grid">
       <Dialog>
         <Toaster richColors />
-        <div className="component-noise-bg" />
+        <div className="" />
         <form>
           <DialogTrigger asChild>
             <Button
@@ -85,7 +85,7 @@ const MessageForm = React.forwardRef<
               Send Message
             </Button>
           </DialogTrigger>
-          <DialogContent className="backdrop-blur-md bg-[#24496b]/80 border border-black text-white rounded-xl p-6 shadow-xl am-x">
+          <DialogContent className="backdrop-blur-md bg-black/80 border border-pink-400 text-white rounded-xl p-6 shadow-xl">
             <DialogHeader>
               <p className="text-xs -mb-3">InCaseYouSeeThis.com</p>
             </DialogHeader>
